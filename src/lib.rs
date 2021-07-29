@@ -25,7 +25,7 @@ pub fn sehxd(x: &u32) -> u64 {
 
 /// Split a `u16` into it's upper and lower bytes.
 fn split_u16_to_u8s(x: &u16) -> impl IntoIterator<Item = u8> {
-    [(*x & 0x00ff) as u8, ((*x & 0xff00) >> 8) as u8]
+    [(x & 0x00ff) as u8, ((x & 0xff00) >> 8) as u8]
 }
 
 /// Convert a bytestream to it's expanded hexadecimal output format.
@@ -40,7 +40,7 @@ mod tests {
     #[test]
     fn it_works() {
         let bin = fs::read("test/moto.bin").unwrap();
-        let expected = fs::read("test/moto.sex").unwrap();
+        let expected = fs::read("test/moto.sehx").unwrap();
 
         let result: Vec<u8> = sehx_u8_buf(&bin).collect();
         assert_eq!(result, expected);
