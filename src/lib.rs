@@ -21,25 +21,19 @@ pub fn sehxd(x: &u32) -> u64 {
     u | 0x6060606060606060
 }
 
-fn split(x: &u16) -> impl IntoIterator<Item = u8> {
-    let y1 = x & 0x00ff;
-    let y2 = (x & 0xff00) >> 4;
-    [y1 as u8, y2 as u8]
+fn split_u16_to_u8s(x: &u16) -> impl IntoIterator<Item = u8> {
+    [(*x & 0x00ff) as u8, ((*x & 0xff00) >> 8) as u8]
 }
 
-pub fn sehx_u8_buf<'a>(buf: &'a [u8]) -> impl Iterator<Item = u8> + 'a {
-    buf.iter().map(|byte| sehx(byte)).flat_map(|ua| split(&ua))
+pub fn sehx_u8_buf(buf: &'_ [u8]) -> impl Iterator<Item = u8> + '_ {
+    buf.iter().map(|byte| sehx(byte)).flat_map(|ua| split_u16_to_u8s(&ua))
 }
 
 pub fn sehx_vec(buf: &[u8]) -> Vec<u8> {
     let mut result = Vec::with_capacity(buf.len() * 2);
 
     for byte in buf {
-        let sehx_val: u16 = sehx(&byte);
-        let y1 = sehx_val & 0x00ff;
-        let y2 = (sehx_val & 0xff00) >> 4;
-        result.push(y1 as u8);
-        result.push(y2 as u8);
+        result.extend(split_u16_to_u8s(&sehx(byte)));
     }
 
     result
