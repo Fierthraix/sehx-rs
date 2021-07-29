@@ -13,6 +13,5 @@ fn main() {
 
     handle
         .write_all(&sehx_u8_buf(&bytes).collect::<Vec<u8>>())
-        //.write(&sehx_vec(&bytes))
         .unwrap();
 }
