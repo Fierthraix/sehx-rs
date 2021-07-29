@@ -21,8 +21,12 @@ pub fn sehxd(x: &u32) -> u64 {
     u | 0x6060606060606060
 }
 
-pub fn sehx_to_u8(buf: &[u16]) -> &[u8] {
-    unsafe {
-        std::mem::transmute::<&[u16], &[u8]>(buf) 
-    }
+fn split(x: &u16) -> impl IntoIterator<Item = u8> {
+    let y1 = x & 0x00ff;
+    let y2 = (x & 0xff00) >> 4;
+    [y1 as u8, y2 as u8]
+}
+
+pub fn sehx_u8_buf<'a>(buf: &'a [u8]) -> impl Iterator<Item = u8> + 'a {
+    buf.iter().map(|byte| sehx(byte)).flat_map(|ua| split(&ua))
 }
