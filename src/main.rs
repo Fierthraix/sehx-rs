@@ -11,5 +11,7 @@ fn main() {
     let stdout = io::stdout();
     let mut handle = stdout.lock();
 
-    handle.write(&sehx_u8_buf(&bytes).collect::<Vec<u8>>()).unwrap();
+    handle
+        .write(&sehx_u8_buf(&bytes).collect::<Vec<u8>>())
+        .unwrap();
 }
