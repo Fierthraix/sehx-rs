@@ -1,7 +1,7 @@
 [package]
 name = "sehx"
-version = "0.1.1"
-edition = "2018"
+version = "0.1.2"
+edition = "2021"
 description = "SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format."
 license = "LGPL-3.0-or-later"
 repository = "https://github.com/Fierthraix/sehx-rs"

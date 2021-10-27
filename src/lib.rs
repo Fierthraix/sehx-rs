@@ -30,7 +30,7 @@ fn split_u16_to_u8s(x: &u16) -> impl IntoIterator<Item = u8> {
 
 /// Convert a bytestream to it's expanded hexadecimal output format.
 pub fn sehx_u8_buf(buf: &'_ [u8]) -> impl Iterator<Item = u8> + '_ {
-    buf.iter().map(|byte| sehx(byte)).flat_map(|ua| split_u16_to_u8s(&ua))
+    buf.iter().map(sehx).flat_map(|ua| split_u16_to_u8s(&ua))
 }
 
 #[cfg(test)]
