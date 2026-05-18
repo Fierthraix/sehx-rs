@@ -1,0 +1,17 @@
+pkgbase = sehx
+	pkgdesc = SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format
+	pkgver = 0.1.2
+	pkgrel = 1
+	url = https://github.com/Fierthraix/sehx-rs
+	arch = x86_64
+	arch = aarch64
+	license = LGPL-3.0-or-later
+	makedepends = cargo
+	depends = gcc-libs
+	depends = glibc
+	conflicts = sehx-bin
+	conflicts = sehx-git
+	source = sehx-0.1.2.crate::https://static.crates.io/crates/sehx/sehx-0.1.2.crate
+	sha256sums = dd006c2716360ebcbf5daf4492492fe2d12263602fd68c75a98cf8b3f69eb4d0
+
+pkgname = sehx

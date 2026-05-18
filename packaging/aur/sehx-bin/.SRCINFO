@@ -1,0 +1,19 @@
+pkgbase = sehx-bin
+	pkgdesc = SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format
+	pkgver = 0.1.2
+	pkgrel = 1
+	url = https://github.com/Fierthraix/sehx-rs
+	arch = x86_64
+	arch = aarch64
+	license = LGPL-3.0-or-later
+	depends = gcc-libs
+	depends = glibc
+	provides = sehx
+	conflicts = sehx
+	conflicts = sehx-git
+	source_x86_64 = https://github.com/Fierthraix/sehx-rs/releases/download/v0.1.2/sehx-0.1.2-x86_64-unknown-linux-gnu.tar.gz
+	sha256sums_x86_64 = SKIP
+	source_aarch64 = https://github.com/Fierthraix/sehx-rs/releases/download/v0.1.2/sehx-0.1.2-aarch64-unknown-linux-gnu.tar.gz
+	sha256sums_aarch64 = SKIP
+
+pkgname = sehx-bin
