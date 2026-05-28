@@ -15,21 +15,41 @@ Rust implementation of [`sehx`](https://gitlab.com/ewtoombs/sehx).
 
 ## Installation
 
+### Cargo
+
 ```bash
 cargo install sehx
+```
+
+### Arch Linux / AUR
+
+```bash
 yay -S sehx
 yay -S sehx-bin
 yay -S sehx-git
-brew tap Fierthraix/tap
-brew install --cask sehx
-nix run github:Fierthraix/nur-packages#sehx
 ```
+
+### macOS / Homebrew
+
+```zsh
+brew install --cask Fierthraix/tap/sehx
+```
+
+### Windows / Scoop
 
 ```powershell
 scoop bucket add fierthraix https://github.com/Fierthraix/scoop-bucket
 scoop install sehx
 ```
 
+### Nix
+
+```bash
+nix profile install github:Fierthraix/nur-packages#sehx
+```
+
+### Release Assets
+
 ```text
-deb/rpm/apk/tar/zip: https://github.com/Fierthraix/sehx-rs/releases
+https://github.com/Fierthraix/sehx-rs/releases/latest
 ```
