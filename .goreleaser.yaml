@@ -1,0 +1,93 @@
+version: 2
+
+project_name: sehx
+
+builds:
+  - id: sehx
+    builder: rust
+    binary: sehx
+    targets:
+      - x86_64-unknown-linux-gnu
+      - aarch64-unknown-linux-gnu
+      - x86_64-apple-darwin
+      - aarch64-apple-darwin
+      - x86_64-pc-windows-gnu
+    flags:
+      - --release
+
+archives:
+  - id: archives
+    ids:
+      - sehx
+    name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Target }}"
+    wrap_in_directory: "{{ .ProjectName }}-{{ .Version }}-{{ .Target }}"
+    formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - README*
+      - LICENSE*
+      - CHANGELOG*
+      - NOTICE*
+
+checksum:
+  name_template: checksums.txt
+
+homebrew_casks:
+  - name: sehx
+    ids:
+      - archives
+    repository:
+      owner: Fierthraix
+      name: homebrew-tap
+      token: "{{ .Env.RELEASE_PUBLISH_TOKEN }}"
+    directory: Casks
+    homepage: https://github.com/Fierthraix/sehx-rs
+    description: SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format.
+    license: LGPL-3.0-or-later
+    binaries:
+      - sehx
+scoops:
+  - name: sehx
+    ids:
+      - archives
+    repository:
+      owner: Fierthraix
+      name: scoop-bucket
+      token: "{{ .Env.RELEASE_PUBLISH_TOKEN }}"
+    directory: bucket
+    homepage: https://github.com/Fierthraix/sehx-rs
+    description: SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format.
+    license: LGPL-3.0-or-later
+
+nix:
+  - name: sehx
+    ids:
+      - archives
+    repository:
+      owner: Fierthraix
+      name: nur-packages
+      token: "{{ .Env.RELEASE_PUBLISH_TOKEN }}"
+    path: pkgs/sehx/default.nix
+    homepage: https://github.com/Fierthraix/sehx-rs
+    description: SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format.
+    license: lgpl3Plus
+
+nfpms:
+  - id: packages
+    ids:
+      - sehx
+    package_name: sehx
+    vendor: Fierthraix
+    homepage: https://github.com/Fierthraix/sehx-rs
+    maintainer: Fierthraix
+    description: SEnsible HeXadecimal, the ASCII-synergetic little-endian hexadecimal format.
+    license: LGPL-3.0-or-later
+    bindir: /usr/bin
+    formats:
+      - deb
+      - rpm
+      - apk
